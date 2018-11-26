@@ -1,18 +1,42 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1 class="title container">City Weather</h1>
+    <CitysInfo v-bind:llista-ciutats="europa"></CitysInfo>
+    <CitysInfo v-bind:llista-ciutats="asia"></CitysInfo>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import CitysInfo from "./components/CitysInfo";
 
 export default {
-  name: 'app',
-  components: {
-    HelloWorld
-  }
+    name: 'app',
+    data () {
+        return {
+            europa: [
+                "Barcelona",
+                "Lleida",
+                "Zaragoza",
+                "Sevilla",
+                "Madrid",
+                "Vigo",
+                "Paris",
+                "Amsterdam"],
+            asia: [
+                "Pekin",
+                "Tokyo",
+                "Hong Kong",
+                "Shangai",
+                "Hanoi"],
+            america: [
+                "New York",
+                "Buenos Aires",
+                "Lima",
+                "Los Angeles",
+                "Bogota"]
+        }
+    },
+    components: {CitysInfo}
 }
 </script>
 
@@ -21,7 +45,6 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
   margin-top: 60px;
 }
