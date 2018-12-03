@@ -1,7 +1,7 @@
 <template>
     <div class="column">
+        <h3>Current Weather</h3>
         <div class="tile box notification is-info is-size-6">
-            <h3>Current Weather</h3>
             <div v-if="ciutatActual != null">
                 {{ ciutatActual.name }}
                 <br>

@@ -1,18 +1,26 @@
 <template>
     <div class="column">
+        <h3>Forecast</h3>
         <div class="tile box notification is-warning is-size-6">
-            <h3>Forecast</h3>
-            <div v-if="forecast != null">
+
+            <div class="control">
+                <label class="radio" v-for="n in 5">
+                    <input type="radio" v-bind:value="n" v-model="dia">
+                    {{ n }} day
+                </label>
+            </div>
+
+            <div v-if="forecast != null" class="field">
+                <br>
+                <img v-bind:src="icon" alt="icon" class="image">
+                <br>
+                {{ forecast[(dia*8)-1].dt_txt }}
                 <br/>
-                {{ forecast.dt_txt }}
+                {{ forecast[(dia*8)-1].main.temp }}
                 <br/>
-                {{ forecast.main.temp }}
+                {{ forecast[(dia*8)-1].main.humidity }}
                 <br/>
-                {{ forecast.main.humidity }}
-                <br/>
-                {{ forecast.weather[0].description }}
-                <br/>
-                <img v-bind:src="icon" alt="icon" class="src">
+                {{ forecast[(dia*8)-1].weather[0].description }}
             </div>
         </div>
     </div>
@@ -26,7 +34,7 @@
         data() {
             return {
                 forecast: null,
-                icon: ""
+                dia: "1"
             }
         },
 
@@ -36,16 +44,22 @@
 
                 this.$http.get(url)
                     .then(response => {
-                        this.forecast = response.body.list[8];
-                        this.icon = "http://openweathermap.org/img/w/" + response.body.list[8].weather[0].icon + ".png";
-                    }, error => {
-                        this.console.log(error);
+                        return response.json();
+                    })
+                    .then(data => {
+                        this.forecast = data.list;
                     })
             }
         },
 
         created: function () {
             this.crida(this.city);
+        },
+
+        computed: {
+            icon(){
+                return "http://openweathermap.org/img/w/" + this.forecast[(this.dia*8)-1].weather[0].icon + ".png";
+            }
         },
 
         watch: {
