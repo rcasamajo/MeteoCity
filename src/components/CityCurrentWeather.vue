@@ -1,8 +1,8 @@
 <template>
     <div class="column">
         <div class="tile box notification is-info is-size-6">
+            <h3>Current Weather</h3>
             <div v-if="ciutatActual != null">
-                <h3>Current Weather</h3>
                 {{ ciutatActual.name }}
                 <br>
                 {{ ciutatActual.weather[0].description }}
