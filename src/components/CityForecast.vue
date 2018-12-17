@@ -3,17 +3,16 @@
         <h3>Forecast</h3>
         <div class="tile box notification is-warning is-size-6">
 
-            <div class="control">
-                <label class="radio" v-for="n in 5">
-                    <input type="radio" v-bind:value="n" v-model="dia">
-                    {{ n }} day
-                </label>
-            </div>
+            <div v-if="forecast != null" >
+                <div class="control">
+                    <label class="radio" v-for="n in 5" v-bind:key="n">
+                        <input type="radio" v-bind:value="n" v-model="dia">
+                        {{ n }} day
+                    </label>
+                </div>
 
-            <div v-if="forecast != null" class="field">
                 <br>
                 <img v-bind:src="icon" alt="icon" class="image">
-                <br>
                 {{ forecast[(dia*8)-1].dt_txt }}
                 <br/>
                 {{ forecast[(dia*8)-1].main.temp }}
@@ -22,6 +21,7 @@
                 <br/>
                 {{ forecast[(dia*8)-1].weather[0].description }}
             </div>
+
         </div>
     </div>
 </template>
