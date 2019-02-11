@@ -2,16 +2,17 @@
   <div id="app">
     <h1 class="title container">City Weather</h1>
     <CitysInfo v-bind:llista-ciutats="europa"></CitysInfo>
+
     <CitysInfo v-bind:llista-ciutats="asia"></CitysInfo>
   </div>
 </template>
 
 <script>
-import CitysInfo from "./components/CitysInfo";
+import CitysInfo from "./components/CitysInfo.vue";
 
 export default {
     name: 'app',
-    data () {
+    data: function() {
         return {
             europa: [
                 "Barcelona",

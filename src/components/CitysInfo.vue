@@ -13,6 +13,7 @@
             <div class="column">
                 <CityCurrentWeather v-bind:city="ciutatSelected"></CityCurrentWeather>
                 <CityForecast v-bind:city="ciutatSelected"></CityForecast>
+                <CityEvents v-bind:city="ciutatSelected"></CityEvents>
             </div>
         </div>
     </article>
@@ -21,10 +22,11 @@
 <script>
     import CityCurrentWeather from "./CityCurrentWeather.vue";
     import CityForecast from "./CityForecast.vue";
+    import CityEvents from "./CityEvents.vue";
 
     export default {
         name: "CitysInfo",
-        components: {CityCurrentWeather, CityForecast},
+        components: {CityCurrentWeather, CityForecast, CityEvents},
         props:['llistaCiutats'],
         data () {
             return {
